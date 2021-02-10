@@ -29,7 +29,7 @@ PMPERMIT_PIC = os.environ.get("PMPERMIT_PIC", None)
 TELEPIC = (
     PMPERMIT_PIC
     if PMPERMIT_PIC
-    else "https://telegra.ph/file/92cfbab6598148837c2e4.jpg"
+    else ""
 )
 PM_WARNS = {}
 PREV_REPLY_MESSAGE = {}
@@ -37,12 +37,12 @@ myid = bot.uid
 MESAG = (
     str(CUSTOM_PMPERMIT)
     if CUSTOM_PMPERMIT
-    else "`TeleBot PM security! Please wait for me to approve you. 😊"
+    else "`My BOT VINZET PM security! Please wait for me to approve you. 😊"
 )
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "TeleBot User"
 USER_BOT_WARN_ZERO = "`I had warned you not to spam. Now you have been blocked and reported until further notice.`\n\n**GoodBye!** "
 USER_BOT_NO_WARN = (
-    "**PM Security ~ TeleBot**\n\nNice to see you here, but  "
+    "**PM Security ~ MY BOT VINZET**\n\nNice to see you here, but  "
     "[{}](tg://user?id={}) is currently unavailable.\nThis is an automated message.\n\n"
     "{}\n\n**You have** `{}/{}` **warnings...**"
     "\n\n   ~ Thank You."
@@ -169,6 +169,13 @@ async def approve_p_m(event):
     else:
         await event.edit(APPROVED_PMs)
 
+@bot.on(admin_cmd(pattern="(disapprove all|da all)$"))
+    async def disapprove_p_m(event):
+        if event.fwd_from:
+            return
+        result = "`ok , everyone is disapproved now`"
+        pmpermit_sql.disapprove_all()
+        await edit_delete(event, result, parse_mode=parse_pre, time=10)
 
 @bot.on(events.NewMessage(incoming=True))
 async def on_new_private_message(event):
@@ -303,7 +310,7 @@ CMD_HELP.update(
         \n\n.disapprove/.da\nUse - DisApprove PM\
         \n\n.listapproved\nUse - Get all approved PMs.\
         \n\nSet var PMPERMIT_PIC for custom PMPic, CUSTOM_PMPERMIT for custom text, PMSECURITY <on/off> to enable/disable, INSTANT_BLOCK <on/off>.\
-        \nGet help from @TeleBotHelpBot."
+        \nGet masuk sini cari teman @humangabutguys."
     }
 )
-# (c) TeleBot
+# (c) My BOT VINZET
